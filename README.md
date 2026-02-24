@@ -11,7 +11,7 @@ Aplicación de consola para gestionar el préstamo de libros a clientes, con con
 | Lenguaje | C# 12 |
 | Runtime | .NET 8 |
 | Base de datos | [LiteDB 5.0.21](https://www.litedb.org/) (embebida, sin servidor) |
-| Persistencia | Archivo local: `c:\temp\litedb-ex01\MyBooks.db` |
+| Persistencia | Archivo local configurable vía variable de entorno `DB_PATH` |
 | Patrón de diseño | Clean Architecture + CQRS (manual, sin MediatR) |
 
 ---
@@ -123,7 +123,55 @@ Entry point de la aplicación. Parsea los argumentos de línea de comandos e ins
 ### Requisitos
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) o superior
-- El directorio `c:\temp\litedb-ex01\` es creado automáticamente al primer uso
+- El directorio de la base de datos es creado automáticamente al primer uso
+
+---
+
+### Configuración — Variable de entorno `DB_PATH`
+
+La ruta del archivo de base de datos LiteDB se resuelve en el siguiente orden de precedencia:
+
+1. **Variable de entorno del sistema** — útil para CI/CD, contenedores o scripts de despliegue
+2. **Archivo `.env`** en el directorio de trabajo — para configuración local de desarrollo
+3. **Valor por defecto**: `c:\temp\litedb-ex01\MyBooks.db`
+
+#### Configuración mediante archivo `.env` (desarrollo local)
+
+Copia el archivo de ejemplo y ajusta la ruta:
+
+```bash
+cp .env.example .env
+```
+
+Contenido de `.env`:
+```env
+DB_PATH=c:\temp\litedb-ex01\MyBooks.db
+```
+
+> ⚠ El archivo `.env` está en `.gitignore` y **nunca debe commitearse**. Contiene configuración local del entorno.
+
+#### Configuración mediante variable de entorno del sistema
+
+**Windows (PowerShell):**
+```powershell
+$env:DB_PATH = "D:\datos\biblioteca.db"
+dotnet run --project AppExample.Litedb -- list-books
+```
+
+**Windows (CMD):**
+```cmd
+set DB_PATH=D:\datos\biblioteca.db
+dotnet run --project AppExample.Litedb -- list-books
+```
+
+**Linux / macOS:**
+```bash
+DB_PATH=/var/data/biblioteca.db dotnet run --project AppExample.Litedb -- list-books
+```
+
+> 💡 Una variable de entorno definida en el sistema siempre tiene prioridad sobre el archivo `.env`.
+
+---
 
 ### Compilar
 
