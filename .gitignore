@@ -1,0 +1,46 @@
+# .NET build artifacts
+bin/
+obj/
+*.user
+*.suo
+.vs/
+.idea/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Test results
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+# Publish output
+publish/
+**/publish/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Rider / JetBrains
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# Environment variables — NEVER commit real .env
+.env
+
+# LiteDB files
+*.db
+*-log.db
