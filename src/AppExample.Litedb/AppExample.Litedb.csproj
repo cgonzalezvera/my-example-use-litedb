@@ -8,8 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\src\AppExample.Litedb.Application\AppExample.Litedb.Application.csproj" />
-      <ProjectReference Include="..\src\AppExample.Litedb.Infrastructure\AppExample.Litedb.Infrastructure.csproj" />
+      <ProjectReference Include="..\AppExample.Litedb.Application\AppExample.Litedb.Application.csproj" />
+      <ProjectReference Include="..\AppExample.Litedb.Infrastructure\AppExample.Litedb.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

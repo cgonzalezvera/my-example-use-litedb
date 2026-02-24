@@ -22,8 +22,8 @@ El proyecto sigue **Clean Architecture** dividido en 4 capas con dependencias un
 
 ```
 AppExample.Litedb.sln
-├── AppExample.Litedb/                        ← Consola (entry point)
 └── src/
+    ├── AppExample.Litedb/                        ← Consola (entry point)
     ├── AppExample.Litedb.Domain/             ← Entidades + Interfaces
     ├── AppExample.Litedb.Application/        ← Commands, Queries, Handlers (CQRS)
     └── AppExample.Litedb.Infrastructure/     ← Repositorios LiteDB
